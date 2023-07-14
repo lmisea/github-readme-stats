@@ -25,7 +25,10 @@ const languageColors = require("../common/languageColors.json"); // now works
 /**
  * Creates the no coding activity SVG node.
  *
- * @param {{color: string, text: string}} The function prop
+ * @param {object} props The function properties.
+ * @param {string} props.color No coding activity text color.
+ * @param {string} props.text No coding activity translated text.
+ * @returns {string} No coding activity SVG node string.
  */
 const noCodingActivityNode = ({ color, text }) => {
   return `
@@ -140,7 +143,7 @@ const createTextNode = ({
  * hiding languages.
  *
  * @param {import("../fetchers/types").WakaTimeLang[]} languages The languages array.
- * @return {void} The recalculated languages array.
+ * @returns {void} The recalculated languages array.
  */
 const recalculatePercentages = (languages) => {
   const totalSum = languages.reduce(
@@ -201,7 +204,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
   const lheight = parseInt(String(line_height), 10);
 
-  const langsCount = clampValue(parseInt(String(langs_count)), 1, langs_count);
+  const langsCount = clampValue(langs_count, 1, langs_count);
 
   // returns theme based colors with proper overrides and defaults
   const { titleColor, textColor, iconColor, bgColor, borderColor } =
